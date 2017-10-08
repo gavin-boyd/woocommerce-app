@@ -1,0 +1,26 @@
+{
+  "name": "woocommerce-app",
+  "version": "1.0.0",
+  "description": "A custom checkout app using the WooCommerce REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavin-boyd/woocommerce-app.git"
+  },
+  "keywords": [
+    "woocommerce",
+    "wordpress"
+  ],
+  "author": "Gavin Boyd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gavin-boyd/woocommerce-app/issues"
+  },
+  "homepage": "https://github.com/gavin-boyd/woocommerce-app#readme",
+  "dependencies": {
+    "woocommerce-api": "^1.4.2"
+  }
+}
