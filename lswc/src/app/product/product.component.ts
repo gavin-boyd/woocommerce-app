@@ -14,6 +14,8 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
   	//Fetch all products
-    this.woo.fetchItems('products/408').then(products => console.log(products));
+    this.woo.fetchItems('products/408').then(
+      products => console.log(products)
+    );
   }
 }
