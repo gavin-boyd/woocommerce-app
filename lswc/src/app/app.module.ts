@@ -1,24 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ProductComponent } from './product/product.component';
 import { RouterModule, Routes } from '@angular/router';
+import { WooApiModule, WooApiService } from 'ng2woo';
+
+const WooCommerceConfig = {
+  url: 'https://lovestorey.uk',
+  consumerKey: 'ck_9f541035d056132bca1ec0877659840af7be2385',
+  consumerSecret: 'cs_425af14732738872e1a02fb690b312692e2d0cbe',
+  wpAPI: true,
+  version: 'wc/v1',
+  queryStringAuth: true
+};
 
 const appRoutes: Routes = [
-  { path: 'crisis-center', component: CrisisListComponent },
-  { path: 'hero/:id',      component: HeroDetailComponent },
   {
-    path: 'heroes',
-    component: HeroListComponent,
-    data: { title: 'Heroes List' }
+    path: 'product',
+    component: ProductComponent
   },
-  { path: '',
-    redirectTo: '/heroes',
-    pathMatch: 'full'
-  },
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: 'home',
+    component: ProductComponent
+  }
 ];
 
 @NgModule({
@@ -32,9 +37,14 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    WooApiModule.forRoot(WooCommerceConfig)
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    WooApiService
+  ],
+  bootstrap: [
+    ProductComponent
+  ]
 })
 export class AppModule { }

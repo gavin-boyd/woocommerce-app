@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WooApiModule, WooApiService } from 'ng2woo';
 
 @Component({
   selector: 'app-product',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+	products: any;
 
-  ngOnInit() {
+  constructor(private woo: WooApiService) { }
+
+  ngOnInit(): void {
+  	//Fetch all products
+    this.woo.fetchItems('products/408').then(products => console.log(products));
   }
-
 }
