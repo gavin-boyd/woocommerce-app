@@ -58,4 +58,4 @@ typings/
 .env
 
 #angular files
-#*app.module.ts
+lswc/src/app/app.module.ts
