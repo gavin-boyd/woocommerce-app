@@ -8,8 +8,8 @@ import { WooApiModule, WooApiService } from 'ng2woo';
 
 const WooCommerceConfig = {
   url: 'https://lovestorey.uk',
-  consumerKey: 'ck_9f541035d056132bca1ec0877659840af7be2385',
-  consumerSecret: 'cs_425af14732738872e1a02fb690b312692e2d0cbe',
+  consumerKey: '',
+  consumerSecret: '',
   wpAPI: true,
   version: 'wc/v1',
   queryStringAuth: true
