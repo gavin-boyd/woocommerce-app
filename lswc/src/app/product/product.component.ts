@@ -8,14 +8,25 @@ import { WooApiModule, WooApiService } from 'ng2woo';
 })
 export class ProductComponent implements OnInit {
 
-	products: any;
+	//products: any;
+  title:string = 'Hello World';
+  description:string = '';
 
   constructor(private woo: WooApiService) { }
 
   ngOnInit(): void {
-  	//Fetch all products
-    this.woo.fetchItems('products/408').then(
-      products => console.log(products)
-    );
+
+    var promise = this.woo.fetchItems('products/408');
+
+    promise.then(function(product) {
+      console.log('Successfully got ' + product.name);
+      console.log(product);
+    });
+
+    promise.catch(function(error) {
+      console.log(error);
+    });
+
+    //this.title = 'test';
   }
 }
