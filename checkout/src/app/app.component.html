@@ -1,0 +1,67 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+  <a class="navbar-brand" href="#">Buy Mirror Table Plan</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Exit</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <mat-horizontal-stepper [linear]="isLinear">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>How many guests?</ng-template>
+        <p>Not inlcuding the bride and goom.</p>
+        <mat-form-field>
+          <input matInput formControlName="firstCtrl" placeholder="Guests" #quantity type="number" (keyup)="calcPrice($event, quantity.value)" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Head Table</ng-template>
+        <mat-radio-group [(ngModel)]="headTableModel" formControlName="secondCtrl" required>
+          <mat-radio-button value="Yes" (change)="headTableSel($event)">Yes</mat-radio-button>
+          <mat-radio-button value="No" (change)="headTableSel($event)">No</mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Wedding Date</ng-template>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="thirdCtrl" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <p>The total cost will be <strong>&pound;{{ totalCost }}</strong></p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+  <!--<div class="row">
+    <p>Head Table: <span>{{ headTableModel }}</span></p>
+    <p>Total: &pound;{{ totalCost }}</p>
+  </div>-->
+</div>

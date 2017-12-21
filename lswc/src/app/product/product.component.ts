@@ -12,27 +12,26 @@ export class ProductComponent implements OnInit {
   private dataAvailable:boolean = false;
   title: any;
   description: string;
+  private order: any = [];
 
   constructor(private woo: WooApiService) { }
 
   ngOnInit(): void {
 
     var promise = this.woo.fetchItems('products/408');
-    var name = [];
 
     var thenProm = promise.then((products) => {
       this.products = products;
       this.dataAvailable = true;
-      console.log(this.products.name);
+      console.log(this.products);
     });
 
     promise.catch(function(error) {
       console.log(error);
     });
+  }
 
-    this.title = 'tester';
-    //console.log('----------------------------' + this.products);   
+  onSubmit() {
+    console.log('Tester');
   }
 }
-
-//ES6 arrow functions

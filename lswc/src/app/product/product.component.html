@@ -1,17 +1,33 @@
 <div *ngIf="dataAvailable">
   <h1>{{ products.name }}</h1>
 </div>
-
-<form>
-  <label for="f-one">How many tables?</label>
-  <input type="number" id="f-one" value="" />
+<form (ngSumbit)="onSubmit()" #product="ngForm">
+  <input type="submit" value="Submit" />
+	<div>
+    <label for="f-one">How many tables?</label>
+    <input type="text"
+           id="tables"
+           name="tables"
+           class="form-control"
+           placeholder="Tables"
+           ngModel
+           required>
+  </div>
+	<div>
+    <label for="f-two">Please provide the exact measurements EXCLUDING the mirror frame and bevelled edges</label>
+    <input type="number" id="f-two" value="" placeholder="Width" />
+    <input type="number" id="f-three" value="" placeholder="height" />
+    <input type="checkbox" value="y" name="f-four" />
+    I don't know, I will send this later
+  </div>
+  <div>
+  	<label for="">Select fonts</label>
+  	<select>
+  		<option>Please select</option>
+  	</select>
+  </div>
 </form>
-<ol>
-	<li>How many Tables?</li>
-	<li>How many guests?</li>
-	<li>Do you need a head table design?</li>
-	<li>Size of mirror</li>
-	<li>Upload spreadsheet of guests names</li>
-</ol>
-<p>Total: £0.00</p>
-<a href="#">Buy</a>
+<div id="information">
+  <p>DESIGN: You will receive your first digital proof within 5 working days after payment is completed. We offer 3 rounds of digital proofs. After that, we may charge between £5 to £10 per design amendment, depending on the complexity of the changes.</p>
+  <p>TURNAROUND: Normally, we dispatch within 3-4 weeks (rush orders available for a small fee). The items will be carefully placed in a beautiful packaging, so its pleasant to open too.</p>
+</div>
