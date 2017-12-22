@@ -23,6 +23,55 @@ export class AppComponent implements OnInit {
   rush = 'false';
   counter = 0;
 
+  public didPaypalScriptLoad: boolean = false;
+  public loading: boolean = true;
+
+  public paypalConfig: any = {
+    env: 'sandbox',
+    client: {
+      sandbox: 'AWlMGZwpQbS0dq_r2Dt0ejp1TxDm72JD7Pt4Uc2mYlihAE3FU5axxS9wr4HcnVc13gB7TcbYDVLp9Vne',
+      production: 'xxxxxxxxxx'
+    },
+    commit: true,
+    payment: (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            {
+              amount: {
+                total: this.totalCost + '.00',
+                currency: 'GBP'
+              },
+              description: "The payment transaction description."
+            }
+          ]
+        }
+      });
+    },
+    onAuthorize: (data, actions) => {
+      // show success page
+    }
+  };
+
+  public ngAfterViewChecked(): void {
+    if(!this.didPaypalScriptLoad) {
+      this.loadPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, '#paypal-button');
+        this.loading = false;
+      });
+    }
+  }
+
+  public loadPaypalScript(): Promise<any> {
+    this.didPaypalScriptLoad = true;
+    return new Promise((resolve, reject) => {
+      const scriptElement = document.createElement('script');
+      scriptElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+      scriptElement.onload = resolve;
+      document.body.appendChild(scriptElement);
+    });
+  }
+
   constructor(
     private _formBuilder: FormBuilder,
     public http: HttpClient
@@ -100,5 +149,12 @@ export class AppComponent implements OnInit {
       this.totalCost = originalCost - 30;
       this.rushOrderMessage = '';
     }
+  }
+
+  buyNow() {
+    WooCommerce.post('products', data, function(err, data, res) {
+      console.log(res);
+    });
+    this.http.post(this.apiEndPoint('products'));
   }
 }

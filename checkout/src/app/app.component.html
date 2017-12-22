@@ -30,6 +30,11 @@
           <mat-radio-button value="Yes" (change)="headTableSel($event)">Yes</mat-radio-button>
           <mat-radio-button value="No" (change)="headTableSel($event)">No</mat-radio-button>
         </mat-radio-group>
+        <mat-form-field *ngIf="headTableModel == 'Yes'">
+          <br /><br />
+          <p>Please supply names</p>
+          <textarea matInput placeholder="Autosize textarea" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
@@ -57,10 +62,11 @@
       <p>The total cost will be <strong>&pound;{{ totalCost }}</strong></p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary">Buy Now</button>
+        <div id="paypal-button"></div>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
+  <h1 *ngIf="loading">Loading...</h1>
   <h1 *ngIf="totalCost">Total: &pound;{{ totalCost }}</h1>
   <!--<div class="row">
     <p>Head Table: <span>{{ headTableModel }}</span></p>
