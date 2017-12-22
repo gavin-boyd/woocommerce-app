@@ -40,7 +40,7 @@
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Wedding Date</ng-template>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="thirdCtrl" required>
+          <input matInput [matDatepicker]="picker" [min]="minDate" placeholder="Choose a date" formControlName="thirdCtrl" (dateChange)="dateSelect('change', $event, rush)" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -49,6 +49,7 @@
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
+      <p>{{ rushOrderMessage }}</p>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
@@ -56,10 +57,11 @@
       <p>The total cost will be <strong>&pound;{{ totalCost }}</strong></p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary">Buy Now</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
-
+  <h1 *ngIf="totalCost">Total: &pound;{{ totalCost }}</h1>
   <!--<div class="row">
     <p>Head Table: <span>{{ headTableModel }}</span></p>
     <p>Total: &pound;{{ totalCost }}</p>

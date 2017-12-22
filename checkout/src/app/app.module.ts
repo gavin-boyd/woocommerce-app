@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { WooApiModule, WooApiService } from 'ng2woo';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   MatAutocompleteModule,
@@ -39,22 +39,13 @@ import {
   MatTooltipModule
 } from '@angular/material';
 
-const WooCommerceConfig = {
-  url: 'https://lovestorey.uk',
-  consumerKey: 'ck_77b95f7dc0b88ffe1d5cef225ec5dabe3550e171',
-  consumerSecret: 'cs_df965efbb4055ca0b18948abc2834f5d30de8af4',
-  wpAPI: true,
-  version: 'wc/v1',
-  queryStringAuth: true
-};
-
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    WooApiModule.forRoot(WooCommerceConfig),
+    HttpClientModule,
     NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
@@ -91,9 +82,7 @@ const WooCommerceConfig = {
     MatToolbarModule,
     MatTooltipModule
   ],
-  providers: [
-    WooApiService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
