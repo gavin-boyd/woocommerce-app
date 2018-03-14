@@ -42,7 +42,8 @@ export class AppComponent implements OnInit {
                 total: this.totalCost + '.00',
                 currency: 'GBP'
               },
-              description: "The payment transaction description."
+              description: "The payment transaction description.",
+              invoice_number: "48787589673"
             }
           ]
         }

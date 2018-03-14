@@ -19,7 +19,7 @@
           <input matInput formControlName="firstCtrl" placeholder="Guests" #quantity type="number" (keyup)="calcPrice($event, quantity.value)" required>
         </mat-form-field>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button matStepperNext color="primary">Next</button>
         </div>
       </form>
     </mat-step>
@@ -36,8 +36,8 @@
           <textarea matInput placeholder="Autosize textarea" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext color="primary">Next</button>
         </div>
       </form>
     </mat-step>
@@ -50,8 +50,8 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext color="primary">Next</button>
         </div>
       </form>
       <p>{{ rushOrderMessage }}</p>
@@ -61,7 +61,7 @@
       <p>You are now done.</p>
       <p>The total cost will be <strong>&pound;{{ totalCost }}</strong></p>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperPrevious>Back</button>
         <div id="paypal-button"></div>
       </div>
     </mat-step>
